@@ -18,6 +18,10 @@
         font-weight: bold;
       }
 
+      #loading {
+        visibility: hidden;
+      }
+
       button {
         padding: 1rem;
         margin-right: 1rem;
@@ -28,6 +32,7 @@
     <main>
       <header><h4>카운터 앱</h4></header>
       <section>
+        <p id="loading">요청중...</p>
         <p id="counter"></p>
         <div>
           <button id="btn-increase">증가</button>
