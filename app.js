@@ -1,13 +1,36 @@
 import { createStore } from "./redux.js";
 import { reducer } from "./reducer.js";
-import { decrease, increase } from "./actions.js";
+import * as Actions from "./actions.js";
 
 const store = createStore(reducer);
 
+const counterDisplay = document.querySelector("#counter");
+const btnIncrease = document.querySelector("#btn-increase");
+const btnDecrease = document.querySelector("#btn-decrease");
+const btnAsyncIncrease = document.querySelector("#btn-async-increase");
+const btnReset = document.querySelector("#btn-reset");
+
 store.subscribe(function () {
-  console.log(store.getState());
+  const { count } = store.getState();
+  console.log(counter)
+
+  counterDisplay.textContent = count;
 });
 
-store.dispatch(increase());
-store.dispatch(increase());
-store.dispatch(decrease());
+store.dispatch(Actions.set(0));
+
+btnReset.addEventListener("click", () => {
+  store.dispatch(Actions.reset());
+});
+
+btnDecrease.addEventListener("click", () => {
+  store.dispatch(Actions.decrease());
+});
+
+btnIncrease.addEventListener("click", () => {
+  store.dispatch(Actions.increase());
+});
+
+btnAsyncIncrease.addEventListener("click", () => {
+  //TODO
+});

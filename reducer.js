@@ -3,7 +3,6 @@ import * as ActionType from "./action-type.js";
 const initializeState = { count: 0 };
 
 export function reducer(state = initializeState, action) {
-  console.log("a", action.type);
   switch (action.type) {
     case ActionType.INCREASE:
       return {
@@ -19,6 +18,11 @@ export function reducer(state = initializeState, action) {
       return {
         ...state,
         count: 0,
+      };
+    case ActionType.SET:
+      return {
+        ...state,
+        count: state.count,
       };
     default:
       return { ...state };
