@@ -22,8 +22,20 @@ export function reducer(state = initializeState, action) {
     case ActionType.SET:
       return {
         ...state,
-        count: state.count,
+        count: action.payload,
       };
+
+    case ActionType.ASYNC_INCREASE:
+      fetch(action.payload.url)
+        .then((response) => response.json())
+        .then((result) => {
+          return {
+            ...state,
+          };
+        })
+        .catch((err) => {
+          return { ...state };
+        });
     default:
       return { ...state };
   }
